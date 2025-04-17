@@ -89,12 +89,18 @@ function App() {
         </p>
         <h2>Tech Stack</h2>
         <ul>
-          <li><strong>Frontend:</strong> React, Chart.js, Bootstrap (for layout)</li>
-          <li><strong>Backend:</strong> Node.js with Express (planned)</li>
-          <li><strong>AI:</strong> Python (Pandas, Scikit-learn, TensorFlow)</li>
-          <li><strong>Infra:</strong> Docker, AWS, GitHub Actions for CI/CD</li>
+          <li><strong>Frontend:</strong> React (for dynamic, user-friendly interfaces), TailwindCSS (for responsive design)</li>
+          <li><strong>Backend:</strong> Node.js with Express (for handling APIs and data requests)</li>
+          <li><strong>AI:</strong> Python (Pandas for data analysis, TensorFlow for AI-driven trading signals)</li>
+          <li><strong>Data Visualization:</strong> Chart.js (for creating interactive charts and graphs)</li>
+          <li><strong>Cloud & Infra:</strong> AWS (for hosting and cloud infrastructure), Docker (for containerization)</li>
+          <li><strong>CI/CD:</strong> GitHub Actions (for automation of continuous integration and deployment)</li>
+          <li><strong>Database:</strong> MySQL (for storing trading data and user interactions), Redis (for caching and fast data retrieval)</li>
+          <li><strong>Version Control:</strong> Git (for source code management), GitHub (for collaboration and versioning)</li>
+          <li><strong>Security:</strong> JWT (for secure authentication), HTTPS (for secure communication)</li>
         </ul>
       </section>
+
 
       {/* Testimonials */}
       <section className="section testimonials">
