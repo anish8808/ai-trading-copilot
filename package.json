@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "aos": "^2.3.4",
     "bootstrap": "^5.3.5",
+    "chart.js": "^4.4.9",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
