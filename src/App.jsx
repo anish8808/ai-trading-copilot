@@ -1,154 +1,110 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Chart from 'chart.js/auto';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import aiImage from './assets/ai-trading-bg.png';
 
 function App() {
   useEffect(() => {
-    AOS.init();
-  }, []);
+    const canvas = document.getElementById('candlestickChart');
 
-  useEffect(() => {
-    const canvas = document.getElementById('tradingGraph');
-    if (canvas && canvas.getContext) {
-      const ctx = canvas.getContext('2d');
-      if (Chart.getChart(canvas)) Chart.getChart(canvas).destroy();
-      new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-          datasets: [
-            {
-              label: 'AI-Driven Signals',
-              data: [120, 125, 130, 128, 140],
-              borderColor: '#00ffd5',
-              backgroundColor: 'rgba(0, 255, 213, 0.2)',
-              fill: true,
-              tension: 0.4,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              labels: { color: '#fff' },
-            },
-          },
-          scales: {
-            x: { ticks: { color: '#fff' } },
-            y: { ticks: { color: '#fff' } },
-          },
-        },
-      });
+    if (Chart.getChart(canvas)) {
+      Chart.getChart(canvas).destroy(); // Fix multiple render issue
     }
+
+    new Chart(canvas, {
+      type: 'bar',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+        datasets: [
+          {
+            label: 'Candlestick Demo',
+            data: [120, 125, 115, 130, 140],
+            backgroundColor: '#00cec9',
+            borderColor: '#00cec9',
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: false,
+          },
+        },
+      },
+    });
   }, []);
 
   return (
-    <div className="App bg-dark text-light">
-      {/* Hero Section with Video */}
-      <header className="hero-section position-relative">
-        <video autoPlay muted loop playsInline className="video-bg">
-          <source src="/video/hero.mp4" type="video/mp4" />
-        </video>
-        <div className="overlay d-flex flex-column justify-content-center align-items-center text-center">
-          <h1 className="display-4 fw-bold">AI Trading Copilot</h1>
-          <p className="lead">From Zero to Pro — Let AI Guide Your Trades</p>
-          <button className="btn btn-primary mt-3">Get Started</button>
-        </div>
-      </header>
-
-      {/* Vision */}
-      <section data-aos="fade-up" className="container py-5">
-        <h2 className="text-center mb-3">Our Vision</h2>
-        <p className="text-center">
-          Empower every intraday trader — beginner or pro — with AI that learns, guides, and grows with you.
+    <div className="app">
+      {/* Hero Section */}
+      <section className="hero">
+        <img src={aiImage} alt="AI Copilot" className="hero-image" />
+        <h1>AI Trading Copilot</h1>
+        <p>
+          Elevate your intraday trading with AI-powered signals, journaling, and market analytics – all in one place.
         </p>
+        <button className="cta-btn">Start Trading Smarter</button>
       </section>
 
-      {/* Why Us */}
-      <section data-aos="fade-up" className="container py-5">
-        <h2 className="text-center mb-4">Why Choose Us?</h2>
-        <div className="row text-center">
-          <div className="col-md-4">
-            <h5>🎯 Smart Signals</h5>
-            <p>AI that reads market pulse and delivers actionable trades.</p>
-          </div>
-          <div className="col-md-4">
-            <h5>📊 Trade Feedback</h5>
-            <p>Instant journaling and personal coaching, built in.</p>
-          </div>
-          <div className="col-md-4">
-            <h5>🚀 Beginner-Friendly</h5>
-            <p>No jargon. Just guidance, growth, and great trades.</p>
-          </div>
+      {/* Features */}
+      <section className="section features">
+        <div className="feature">
+          <h3>⚙️ AI Trade Signals</h3>
+          <p>
+            We use real-time data and intelligent pattern recognition to offer personalized trading signals.
+          </p>
+        </div>
+        <div className="feature">
+          <h3>📓 Smart Journaling</h3>
+          <p>
+            Keep track of your trades, insights, and growth. Our AI gives feedback to sharpen your skills.
+          </p>
+        </div>
+        <div className="feature">
+          <h3>📊 Real-Time Analytics</h3>
+          <p>
+            Visualize your progress, understand what works, and identify mistakes instantly.
+          </p>
         </div>
       </section>
 
-      {/* Live Trading Graph */}
-      <section data-aos="zoom-in" className="container py-5">
-        <h2 className="text-center">Live Trading Graph</h2>
-        <div className="text-center">
-          <canvas id="tradingGraph" width="400" height="200"></canvas>
-        </div>
+      {/* Candlestick Graph */}
+      <section className="section about">
+        <h2>Candlestick Overview</h2>
+        <img
+          src="/Candlestick_Pattern_Cheat_Sheet_TheChartGuys.jpg"
+          alt="Candlestick Cheat Sheet"
+          className="candlestick-cheat-img"
+        />
+        <canvas id="candlestickChart" width="600" height="300"></canvas>
+      </section>
+
+      {/* Vision and Tech Stack */}
+      <section className="section tech">
+        <h2>Our Vision</h2>
+        <p>
+          We aim to empower intraday traders with smart, AI-enhanced tools that bring confidence, clarity, and consistency
+          to trading. No more overtrading, no more emotional bias—just clean, data-backed execution.
+        </p>
+        <h2>Tech Stack</h2>
+        <ul>
+          <li><strong>Frontend:</strong> React, Chart.js, Bootstrap (for layout)</li>
+          <li><strong>Backend:</strong> Node.js with Express (planned)</li>
+          <li><strong>AI:</strong> Python (Pandas, Scikit-learn, TensorFlow)</li>
+          <li><strong>Infra:</strong> Docker, AWS, GitHub Actions for CI/CD</li>
+        </ul>
       </section>
 
       {/* Testimonials */}
-      <section data-aos="fade-up" className="container py-5">
-        <h2 className="text-center mb-4">What Traders Say</h2>
-        <div className="row">
-          <div className="col-md-6">
-            <blockquote className="blockquote">
-              "Never thought trading could feel this intuitive. Game-changer!"
-            </blockquote>
-            <footer className="blockquote-footer">Ravi, Beginner Trader</footer>
-          </div>
-          <div className="col-md-6">
-            <blockquote className="blockquote">
-              "This is not just a tool — it's a trading mentor in disguise."
-            </blockquote>
-            <footer className="blockquote-footer">Sneha, Full-time Day Trader</footer>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQs */}
-      <section data-aos="fade-up" className="container py-5">
-        <h2 className="text-center mb-4">FAQs</h2>
-        <div className="accordion" id="faqAccordion">
-          <div className="accordion-item bg-dark border-secondary">
-            <h2 className="accordion-header">
-              <button className="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-                Do I need trading experience?
-              </button>
-            </h2>
-            <div id="faq1" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-              <div className="accordion-body">
-                Nope! We start you from zero and guide you like a copilot all the way.
-              </div>
-            </div>
-          </div>
-          <div className="accordion-item bg-dark border-secondary">
-            <h2 className="accordion-header">
-              <button className="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-                How are signals generated?
-              </button>
-            </h2>
-            <div id="faq2" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-              <div className="accordion-body">
-                Signals are AI-trained on live market data and trading strategies.
-              </div>
-            </div>
-          </div>
-        </div>
+      <section className="section testimonials">
+        <h2>User Testimonials</h2>
+        <p>"This tool has completely changed the way I trade. The AI feedback is spot on!" – Alex</p>
+        <p>"A must-have for every serious trader looking for an edge." – Priya</p>
       </section>
 
       {/* Footer */}
-      <footer className="text-center py-4 border-top border-secondary">
-        <p>&copy; 2025 AI Trading Copilot. All Rights Reserved.</p>
-      </footer>
+      <footer className="footer">© 2025 AI Trading Copilot | Built with ❤️ for traders</footer>
     </div>
   );
 }
